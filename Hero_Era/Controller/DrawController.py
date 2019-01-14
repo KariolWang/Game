@@ -35,10 +35,14 @@ class DrawInterface(object):
         ]
         self.check_buttons = [
             'Media/images/checkHero.png',
-            'Media/recreateHero.png'
+            'Media/images/recreateHero.png'
+        ]
+        self.check_buttons_hover = [
+            'Media/images/checkHero1.png',
+            'Media/images/recreateHero1.png'
         ]
         self.new_hero_color = (255, 255, 255)
-        self.new_hero_size = 32
+        self.new_hero_size = 24
         self.new_hero_font = 'Media/fonts/STKAITI.TTF'
         self.create_hero_show = 'Media/images/createHeroShow.png'
         self.is_fill = False
@@ -51,6 +55,7 @@ class DrawInterface(object):
             if is_over in [1, 3]:
                 print('英雄出世')
                 is_over_hero = self.new_hero_interface(hero)
+                
             if is_over in [2, 4]:
                 print('选择势力')
         if is_over_menu == 2:
@@ -127,8 +132,9 @@ class DrawInterface(object):
                     exit()
                 if event.type == self.game.MOUSEBUTTONDOWN:
                     is_click = True
-            coo, excursion = dm.draw_hero(hero, self.create_hero_show, self.new_hero_font, self.new_hero_size, self.new_hero_color, self.check_buttons)
-            is_over = dm.buttons_click(x, y, coo, self.check_buttons, excursion)
+            coo, excursion = dm.draw_hero(hero, self.create_hero_show, self.new_hero_font, self.new_hero_size,
+                                          self.new_hero_color, self.check_buttons)
+            is_over = dm.buttons_click(x, y, coo, self.check_buttons_hover, excursion)
             if is_over == 1 and is_click:
                 run = False
             if is_over == 2 and is_click:

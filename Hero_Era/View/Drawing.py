@@ -23,8 +23,8 @@ class Drawing(object):
     def draw_font(self, font, size, text, color, coord):
         font = self.game.font.Font(font, size)
         msg = font.render(text, True, color)
-        coord[0] -= msg.get_width()/2
-        coord[1] -= msg.get_height()/2
+        list(coord)[0] -= msg.get_width()/2
+        list(coord)[1] -= msg.get_height()/2
         self.screen.blit(msg, coord)
     
     def play_music(self, music, count):
@@ -120,22 +120,23 @@ class DrawNewGame(Drawing):
         show = self.game.image.load(show_image)
         x = self.screen.get_width()/2-show.get_width()/2
         y = self.screen.get_height()/2-show.get_height()/2
-        self.draw_image(show, (x, y))
-        self.draw_font(font, size, hero.h_name, color, (x+show.get_width()*0.3, y+show.get_height()*0.1))
-        self.draw_font(font, size, hero.h_lv, color, (x+show.get_width()*0.3, y+show.get_height()*0.2))
-        self.draw_font(font, size, hero.h_exp, color, (x+show.get_width()*0.3, y+show.get_height()*0.3))
-        self.draw_font(font, size, hero.h_lead, color, (x+show.get_width()*0.3, y+show.get_height()*0.4))
-        self.draw_font(font, size, hero.h_force, color, (x+show.get_width()*0.3, y+show.get_height()*0.5))
-        self.draw_font(font, size, hero.h_brain, color, (x+show.get_width()*0.3, y+show.get_height()*0.6))
-        self.draw_font(font, size, hero.h_politics, color, (x+show.get_width()*0.3, y+show.get_height()*0.7))
-        self.draw_font(font, size, hero.h_charm, color, (x+show.get_width()*0.3, y+show.get_height()*0.8))
-        self.draw_font(font, size, hero.h_grade, color, (x+show.get_width()*0.3, y+show.get_height()*0.9))
-        self.draw_font(font, size, hero.h_identity, color, (x+show.get_width()*0.3, y+show.get_height()*1))
+        self.draw_image(show_image, (x, y))
+        self.draw_font(font, size, str(hero.h_name), color, (x+show.get_width()*0.1, y+show.get_height()*0.1))
+        self.draw_font(font, size, str(hero.h_lv), color, (x+show.get_width()*0.1, y+show.get_height()*0.2))
+        self.draw_font(font, size, str(hero.h_exp), color, (x+show.get_width()*0.1, y+show.get_height()*0.3))
+        self.draw_font(font, size, str(hero.h_lead), color, (x+show.get_width()*0.1, y+show.get_height()*0.4))
+        self.draw_font(font, size, str(hero.h_force), color, (x+show.get_width()*0.1, y+show.get_height()*0.5))
+        self.draw_font(font, size, str(hero.h_brain), color, (x+show.get_width()*0.6, y+show.get_height()*0.2))
+        self.draw_font(font, size, str(hero.h_politics), color, (x+show.get_width()*0.6, y+show.get_height()*0.3))
+        self.draw_font(font, size, str(hero.h_charm), color, (x+show.get_width()*0.6, y+show.get_height()*0.4))
+        self.draw_font(font, size, str(hero.h_grade), color, (x+show.get_width()*0.6, y+show.get_height()*0.5))
+        self.draw_font(font, size, str(hero.h_identity), color, (x+show.get_width()*0.6, y+show.get_height()*0.1))
         coo = list()
         excursion = list()
         for i in range(len(check_buttons)):
             excursion_x, excursion_y = self.excursion(
-                (x+show.get_width())/self.screen.get_width(), 0.8, (y+show.get_height())/self.screen.get_height(), 0.1*i)
+                (x+show.get_width())/self.screen.get_width(), 0.04+0.4*(i+1),
+                (y+show.get_height())/self.screen.get_height(), 0.9)
             bt = self.game.image.load(check_buttons[i])
             bx0 = self.screen.get_width()*excursion_x-bt.get_width()/2
             by0 = self.screen.get_height()*excursion_y-bt.get_height()/2
