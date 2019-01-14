@@ -33,16 +33,24 @@ class DrawInterface(object):
             'Media/images/createHeroButton.png',
             'Media/images/choiceGroupButton.png'
         ]
+        self.check_buttons = [
+            'Media/images/checkHero.png',
+            'Media/recreateHero.png'
+        ]
+        self.new_hero_color = (255, 255, 255)
+        self.new_hero_size = 32
+        self.new_hero_font = 'Media/fonts/STKAITI.TTF'
+        self.create_hero_show = 'Media/images/createHeroShow.png'
         self.is_fill = False
-        self.count = -1
     
-    def running(self):
+    def running(self, hero):
         is_over_menu = self.menu_interface()
         if is_over_menu == 1:
             print('初临乱世')
             is_over = self.new_game_interface()
             if is_over in [1, 3]:
                 print('英雄出世')
+                is_over_hero = self.new_hero_interface(hero)
             if is_over in [2, 4]:
                 print('选择势力')
         if is_over_menu == 2:
@@ -50,8 +58,8 @@ class DrawInterface(object):
     
     def menu_interface(self):
         dm = Drawing.DrawMenu(self.size, self.screen_title, self.is_fill, self.icon,
-                              self.cursor,  self.count, self.topic)
-        dm.play_music(self.menu_bg_music, self.count)
+                              self.cursor, self.topic)
+        dm.play_music(self.menu_bg_music, -1)
         run = True
         is_over = 0
         while run:
@@ -98,6 +106,32 @@ class DrawInterface(object):
             if is_over in [1, 3] and is_click:  # 英雄出世
                 run = False
             if is_over in [2, 4] and is_click:  # 选择势力
+                run = False
+            dm.draw_cursor(x, y)
+            self.game.display.flip()
+            self.game.display.update()
+        return is_over
+    
+    def new_hero_interface(self, hero):
+        dm = Drawing.DrawNewGame(self.size, self.screen_title, self.is_fill, self.icon,
+                                 self.cursor, self.newGame_bg_image)
+        run = True
+        is_over = 0
+        while run:
+            self.clock.tick(30)
+            is_click = False
+            x, y = self.game.mouse.get_pos()
+            dm.draw_image(self.newGame_bg_image, (0, 0))
+            for event in self.game.event.get():
+                if event.type == self.game.QUIT:
+                    exit()
+                if event.type == self.game.MOUSEBUTTONDOWN:
+                    is_click = True
+            coo, excursion = dm.draw_hero(hero, self.create_hero_show, self.new_hero_font, self.new_hero_size, self.new_hero_color, self.check_buttons)
+            is_over = dm.buttons_click(x, y, coo, self.check_buttons, excursion)
+            if is_over == 1 and is_click:
+                run = False
+            if is_over == 2 and is_click:
                 run = False
             dm.draw_cursor(x, y)
             self.game.display.flip()
