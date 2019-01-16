@@ -4,11 +4,12 @@ from Hero_Era.Model.Hero import Hero
 
 class ConnController(object):
     
-    def __init__(self):
+    def __init__(self, name):
         self.hero_list = list()
+        self.name = name
     
     def hero(self):
-        hero = Hero('岳飞')
+        hero = Hero(self.name)
         self.hero_list.append(['姓名', '体力', '统率', '智力', '魅力', '身份', '技力', '武力', '政治', '品阶'])
         identity = '统帅' if hero.h_identity == 1 else '武将' if hero.h_identity == 2\
             else '军师' if hero.h_identity == 3 else '宰辅'
