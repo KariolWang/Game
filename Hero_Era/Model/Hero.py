@@ -4,20 +4,19 @@ import random
 
 class Hero(object):
     
-    def __init__(self, name, grade):
-        self.h_id = 0
+    def __init__(self, name):
         self.h_name = name
         self.h_identity = random.randint(1, 4)
         self.h_lv = 0
         self.h_exp = 0
-        self.h_lead = random.randint(random.randint(15, 19)*grade, 99)
-        self.h_force = random.randint(random.randint(15, 19)*grade, 99)
-        self.h_brain = random.randint(random.randint(15, 19)*grade, 99)
-        self.h_politics = random.randint(random.randint(15, 19)*grade, 99)
-        self.h_charm = random.randint(random.randint(15, 19)*grade, 99)
-        self.h_hp = round(self.h_force*1.8)
-        self.h_sp = round(self.h_brain*1.2)
-        self.h_grade = grade
+        self.h_grade = 1
+        self.h_lead = random.randint(15*(self.h_grade-1), 20*self.h_grade)
+        self.h_force = random.randint(15*(self.h_grade-1), 20*self.h_grade)
+        self.h_brain = random.randint(15*(self.h_grade-1), 20*self.h_grade)
+        self.h_politics = random.randint(15*(self.h_grade-1), 20*self.h_grade)
+        self.h_charm = random.randint(15*(self.h_grade-1), 20*self.h_grade)
+        self.h_hp = round(self.h_force*1.8+1)
+        self.h_sp = round(self.h_brain*1.2+1)
         self.h_status = 1
     
     def get_exp(self, exp):

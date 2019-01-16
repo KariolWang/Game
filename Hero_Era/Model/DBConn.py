@@ -10,18 +10,20 @@ class Conn(object):
     
     def create_heroes_table(self):
         sql = '''CREATE TABLE heroes(
-            h_id INTEGER PRIMARY KEY NOT NULL,
+            h_id INTEGER PRIMARY KEY AUTOINCREMENT,
             h_name TEXT NOT NULL,
-            h_lv INTEGER NOT NULL,
-            h_hp INTEGER NOT NULL,
-            h_sp INTEGER NOT NULL,
-            h_lead INTEGER NOT NULL,
-            h_force INTEGER NOT NULL,
-            h_brain INTEGER NOT NULL,
-            h_politics INTEGER NOT NULL,
-            h_charm INTEGER NOT NULL,
-            h_grade INTEGER NOT NULL,
-            h_status INTEGER NOT NULL
+            h_identity INT NOT NULL,
+            h_lv INT NOT NULL,
+            h_exp INT NOT NULL,
+            h_hp INT NOT NULL,
+            h_sp INT NOT NULL,
+            h_lead INT NOT NULL,
+            h_force INT NOT NULL,
+            h_brain INT NOT NULL,
+            h_politics INT NOT NULL,
+            h_charm INT NOT NULL,
+            h_grade INT NOT NULL,
+            h_status INT NOT NULL
         )'''
         try:
             self.cursor.execute('DROP TABLE {};'.format('heroes'))
@@ -35,7 +37,7 @@ class Conn(object):
         values = ''
         for key, value in data.__dict__.items():
             keys += '{},'.format(key)
-            values += '{},'.format(value)
+            values += '"{}",'.format(value) if key == 'h_name' else '{},'.format(value)
         sql = '''INSERT INTO {0}({1}) VALUES ({2})'''.format(table, keys[:-1], values[:-1])
         try:
             self.cursor.execute(sql)

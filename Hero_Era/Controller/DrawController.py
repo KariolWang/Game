@@ -47,20 +47,6 @@ class DrawInterface(object):
         self.create_hero_show = 'Media/images/createHeroShow.png'
         self.is_fill = False
     
-    def running(self, hero):
-        is_over_menu = self.menu_interface()
-        if is_over_menu == 1:
-            print('初临乱世')
-            is_over = self.new_game_interface()
-            if is_over in [1, 3]:
-                print('英雄出世')
-                is_over_hero = self.new_hero_interface(hero)
-                
-            if is_over in [2, 4]:
-                print('选择势力')
-        if is_over_menu == 2:
-            print('乱世再起')
-    
     def menu_interface(self):
         dm = Drawing.DrawMenu(self.size, self.screen_title, self.is_fill, self.icon,
                               self.cursor, self.topic)
