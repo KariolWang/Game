@@ -7,13 +7,17 @@ from Hero_Era.Controller.DrawController import DrawInterface
 class Run(object):
     
     def __init__(self, db_name, hero_table, name):
-        self.Conn = Conn(db_name)
-        self.conn = self.Conn.conn
-        self.cursor = self.conn.cursor()
-        self.hero_table = hero_table
-        self.name = name
+        self.Conn = Conn(db_name)   # DBConn模块
+        self.conn = self.Conn.conn  # 数据库连接对象
+        self.cursor = self.conn.cursor()    # 操作指针
+        self.hero_table = hero_table    # 英雄表名
+        self.name = name    # 英雄名
 
     def running(self):
+        """
+        运行逻辑控制
+        :return: None
+        """
         is_over_menu = DrawInterface().menu_interface()
         if is_over_menu == 1:
             print('初临乱世')

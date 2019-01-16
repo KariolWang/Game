@@ -5,10 +5,14 @@ import sqlite3
 class Conn(object):
     
     def __init__(self, db):
-        self.conn = sqlite3.connect(db)
-        self.cursor = self.conn.cursor()
+        self.conn = sqlite3.connect(db)     # 数据库连接对象
+        self.cursor = self.conn.cursor()    # 操作指针
     
     def create_heroes_table(self):
+        """
+        创建英雄表
+        :return: None
+        """
         sql = '''CREATE TABLE heroes(
             h_id INTEGER PRIMARY KEY AUTOINCREMENT,
             h_name TEXT NOT NULL,
@@ -33,6 +37,12 @@ class Conn(object):
             print(e)
         
     def inert_data(self, table, data):
+        """
+        插入数据
+        :param table: 表名
+        :param data: 数据
+        :return: None
+        """
         keys = ''
         values = ''
         for key, value in data.__dict__.items():
