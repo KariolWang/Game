@@ -1,0 +1,27 @@
+Metadata-Version: 1.1
+Name: Pinyin2Hanzi
+Version: 0.1.1
+Summary: 拼音转汉字， Engine of Chinese Input Method
+Home-page: https://github.com/someus/Pinyin2Hanzi
+Author: Letian Sun
+Author-email: sunlt1699@gmail.com
+License: MIT
+Description: 
+        Engine of Chinese Input Method.
+        
+        Please go to https://github.com/someus/Pinyin2Hanzi for more info.
+        
+        具体使用请移步 https://github.com/someus/Pinyin2Hanzi 。
+        
+Keywords: NLP,Chinese,Pinyin
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Natural Language :: Chinese (Simplified)
+Classifier: Natural Language :: Chinese (Traditional)
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Topic :: Text Processing
